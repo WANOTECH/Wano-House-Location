@@ -1,25 +1,10 @@
-package com.app.gest.immo.entities;
+package com.app.gest.immo.dto;
 
 import com.app.gest.immo.enumeration.EEtatBien;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "BIEN")
-public class Bien {
+public class BienDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
-	@Column(name = "CODE", unique = true)
 	private String code;
-	@Column(name = "NOM")
 	private String nom;
 	private String location;
 	private String longitude;
@@ -27,25 +12,13 @@ public class Bien {
 	private int nombrePieces;
 	private Double montantLoyer;
 	private int superficie;
-	@ManyToOne
-	private Ville adresse;
-	@ManyToOne
-	private Region region;
-	@ManyToOne
-	private Quartier quartier;
-	@ManyToOne
-	private Personne proprietaire;
-	@ManyToOne
-	private Gestionnaire gestionnaire;
-	@ManyToOne
-	private CategorieBien categorieBien;
+	private String adresse;
+	private String region;
+	private String quartier;
+	private String proprietaire;
+	private String gestionnaire;
 	private EEtatBien etatBien;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getCode() {
 		return code;
 	}
@@ -94,36 +67,7 @@ public class Bien {
 	public void setSuperficie(int superficie) {
 		this.superficie = superficie;
 	}
-	public Ville getAdresse() {
-		return adresse;
-	}
-	public void setAdresse(Ville adresse) {
-		this.adresse = adresse;
-	}
-	public Region getRegion() {
-		return region;
-	}
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-	public Quartier getQuartier() {
-		return quartier;
-	}
-	public void setQuartier(Quartier quartier) {
-		this.quartier = quartier;
-	}
-	public Personne getProprietaire() {
-		return proprietaire;
-	}
-	public void setProprietaire(Personne proprietaire) {
-		this.proprietaire = proprietaire;
-	}
-	public Gestionnaire getGestionnaire() {
-		return gestionnaire;
-	}
-	public void setGestionnaire(Gestionnaire gestionnaire) {
-		this.gestionnaire = gestionnaire;
-	}
+	
 	public EEtatBien getEtatBien() {
 		return etatBien;
 	}
@@ -131,15 +75,47 @@ public class Bien {
 		this.etatBien = etatBien;
 	}
 	
-	public CategorieBien getCategorieBien() {
-		return categorieBien;
+	public String getAdresse() {
+		return adresse;
 	}
-	public void setCategorieBien(CategorieBien categorieBien) {
-		this.categorieBien = categorieBien;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
-	public Bien(String code, String nom, String location, String longitude, String latittude, int nombrePieces,
-			Double montantLoyer, int superficie, Ville adresse, Region region, Quartier quartier, Personne proprietaire,
-			Gestionnaire gestionnaire, EEtatBien etatBien) {
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	public String getQuartier() {
+		return quartier;
+	}
+	public void setQuartier(String quartier) {
+		this.quartier = quartier;
+	}
+	public String getProprietaire() {
+		return proprietaire;
+	}
+	public void setProprietaire(String proprietaire) {
+		this.proprietaire = proprietaire;
+	}
+	public String getGestionnaire() {
+		return gestionnaire;
+	}
+	public void setGestionnaire(String gestionnaire) {
+		this.gestionnaire = gestionnaire;
+	}
+	public BienDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Bien [code=" + code + ", nom=" + nom + "]";
+	}
+	public BienDTO(String code, String nom, String location, String longitude, String latittude, int nombrePieces,
+			Double montantLoyer, int superficie, String adresse, String region, String quartier, String proprietaire,
+			String gestionnaire, EEtatBien etatBien) {
 		super();
 		this.code = code;
 		this.nom = nom;
@@ -156,14 +132,8 @@ public class Bien {
 		this.gestionnaire = gestionnaire;
 		this.etatBien = etatBien;
 	}
-	public Bien() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "Bien [code=" + code + ", nom=" + nom + "]";
-	}
+	
+	
 	
 
 }

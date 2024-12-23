@@ -1,37 +1,16 @@
-package com.app.gest.immo.entities;
+package com.app.gest.immo.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+public class ParametreDTO {
 
-@Entity
-@Table(name = "Parametre")
-public class Parametre {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
-	@Column(name ="CODE", unique = true)
 	private String code;
 	private String libelle;
 	private String champLibre1;
 	private String champLibre2;
 	private String champLibre3;
 	private String champLibre4;
-	@ManyToOne
-	@JoinColumn(name ="Code_TypeParam", referencedColumnName = "TYPEPARAM_CODE")
-	private TypeParametre typeParam;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
+	private String typeParam;
+	
 	public String getCode() {
 		return code;
 	}
@@ -68,14 +47,14 @@ public class Parametre {
 	public void setChampLibre4(String champLibre4) {
 		this.champLibre4 = champLibre4;
 	}
-	public TypeParametre getTypeParam() {
+	public String getTypeParam() {
 		return typeParam;
 	}
-	public void setTypeParam(TypeParametre typeParam) {
+	public void setTypeParam(String typeParam) {
 		this.typeParam = typeParam;
 	}
-	public Parametre(String code, String libelle, String champLibre1, String champLibre2, String champLibre3,
-			String champLibre4, TypeParametre typeParam) {
+	public ParametreDTO(String code, String libelle, String champLibre1, String champLibre2, String champLibre3,
+			String champLibre4, String typeParam) {
 		super();
 		this.code = code;
 		this.libelle = libelle;
@@ -85,7 +64,7 @@ public class Parametre {
 		this.champLibre4 = champLibre4;
 		this.typeParam = typeParam;
 	}
-	public Parametre() {
+	public ParametreDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

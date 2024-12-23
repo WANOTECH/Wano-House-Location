@@ -1,4 +1,4 @@
-package com.app.gest.immo.entities;
+package com.app.gest.immo.dto;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -6,41 +6,20 @@ import java.util.Set;
 
 import com.app.gest.immo.enumeration.EEtatLoyer;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "Loyer")
-public class Loyer {
+public class LoyerDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
-	@Column(name = "CODE", unique = true)
+	
 	private String code;
 	private String description;
 	private Date datePerception;
 	private Double montant;
-	@OneToMany
-	private Set<Bien> listBiens = new HashSet<Bien>();
-	@ManyToOne
-	private Contrat contrat ;
+	private Set<BienDTO> listBiens = new HashSet<BienDTO>();
+	private ContratDTO contrat ;
 	private EEtatLoyer etatLoyer;
 	private String utiCreation;
 	private Date dateCreation;
 	private Date dateModif;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public String getCode() {
 		return code;
 	}
@@ -65,16 +44,16 @@ public class Loyer {
 	public void setMontant(Double montant) {
 		this.montant = montant;
 	}
-	public Set<Bien> getListBiens() {
+	public Set<BienDTO> getListBiens() {
 		return listBiens;
 	}
-	public void setListBiens(Set<Bien> listBiens) {
+	public void setListBiens(Set<BienDTO> listBiens) {
 		this.listBiens = listBiens;
 	}
-	public Contrat getContrat() {
+	public ContratDTO getContrat() {
 		return contrat;
 	}
-	public void setContrat(Contrat contrat) {
+	public void setContrat(ContratDTO contrat) {
 		this.contrat = contrat;
 	}
 	public EEtatLoyer getEtatLoyer() {
@@ -101,8 +80,8 @@ public class Loyer {
 	public void setDateModif(Date dateModif) {
 		this.dateModif = dateModif;
 	}
-	public Loyer(String code, String description, Date datePerception, Double montant, Set<Bien> listBiens,
-			Contrat contrat, EEtatLoyer etatLoyer, String utiCreation, Date dateCreation, Date dateModif) {
+	public LoyerDTO(String code, String description, Date datePerception, Double montant, Set<BienDTO> listBiens,
+			ContratDTO contrat, EEtatLoyer etatLoyer, String utiCreation, Date dateCreation, Date dateModif) {
 		super();
 		this.code = code;
 		this.description = description;
@@ -115,7 +94,7 @@ public class Loyer {
 		this.dateCreation = dateCreation;
 		this.dateModif = dateModif;
 	}
-	public Loyer() {
+	public LoyerDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

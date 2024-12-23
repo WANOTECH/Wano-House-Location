@@ -1,38 +1,16 @@
-package com.app.gest.immo.entities;
+package com.app.gest.immo.dto;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "TYEPE_BIEN")
-public class TypeBien implements Serializable{
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "TYPE-ID")
-	private Long id;
-	@Column(name ="CODE", unique =true)
+public class CategorieBienDTO {
+	
 	private String code;
-	@Column(name = "NOM")
-	private String nom;
-	@Column(name = "DESCRIPTION")
-	private String description;
+	private String nom;	private String description;
 	private Date dateCreation;
 	private Date dateModif;
 	private String utiCreation;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+	private String typeBien;
 	public String getCode() {
 		return code;
 	}
@@ -69,8 +47,23 @@ public class TypeBien implements Serializable{
 	public void setUtiCreation(String utiCreation) {
 		this.utiCreation = utiCreation;
 	}
-	public TypeBien(String code, String nom, String description, Date dateCreation, Date dateModif,
-			String utiCreation) {
+	public String getTypeBien() {
+		return typeBien;
+	}
+	public void setTypeBien(String typeBien) {
+		this.typeBien = typeBien;
+	}
+	
+	@Override
+	public String toString() {
+		return "CategorieBien [code=" + code + ", nom=" + nom + "]";
+	}
+	public CategorieBienDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public CategorieBienDTO(String code, String nom, String description, Date dateCreation, Date dateModif,
+			String utiCreation, String typeBien) {
 		super();
 		this.code = code;
 		this.nom = nom;
@@ -78,11 +71,9 @@ public class TypeBien implements Serializable{
 		this.dateCreation = dateCreation;
 		this.dateModif = dateModif;
 		this.utiCreation = utiCreation;
-	}
-	public TypeBien() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.typeBien = typeBien;
+
 	}
 	
-	
+
 }

@@ -1,19 +1,12 @@
-package com.app.gest.immo.entities;
+package com.app.gest.immo.dto;
 
 import java.util.Date;
 
 import com.app.gest.immo.enumeration.ETypeParam;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "TypeParam")
-public class TypeParametre {
-	@Id
-	@Column(name ="TYPEPARAM_CODE")
+public class TypeParametreDTO {
+
 	private String code;
 	private String libelle;
 	private String description;
@@ -63,7 +56,7 @@ public class TypeParametre {
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
 	}
-	public TypeParametre(String code, String libelle, String description, ETypeParam typeParam, String utiCreation,
+	public TypeParametreDTO(String code, String libelle, String description, ETypeParam typeParam, String utiCreation,
 			String utiModification, Date dateCreation) {
 		super();
 		this.code = code;
@@ -74,7 +67,7 @@ public class TypeParametre {
 		this.utiModification = utiModification;
 		this.dateCreation = dateCreation;
 	}
-	public TypeParametre() {
+	public TypeParametreDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

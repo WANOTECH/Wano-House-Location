@@ -1,38 +1,17 @@
-package com.app.gest.immo.entities;
+package com.app.gest.immo.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "TYEPE_BIEN")
-public class TypeBien implements Serializable{
+public class TypeBienDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "TYPE-ID")
-	private Long id;
-	@Column(name ="CODE", unique =true)
+
 	private String code;
-	@Column(name = "NOM")
 	private String nom;
-	@Column(name = "DESCRIPTION")
 	private String description;
 	private Date dateCreation;
 	private Date dateModif;
 	private String utiCreation;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getCode() {
 		return code;
 	}
@@ -69,7 +48,7 @@ public class TypeBien implements Serializable{
 	public void setUtiCreation(String utiCreation) {
 		this.utiCreation = utiCreation;
 	}
-	public TypeBien(String code, String nom, String description, Date dateCreation, Date dateModif,
+	public TypeBienDTO(String code, String nom, String description, Date dateCreation, Date dateModif,
 			String utiCreation) {
 		super();
 		this.code = code;
@@ -79,7 +58,7 @@ public class TypeBien implements Serializable{
 		this.dateModif = dateModif;
 		this.utiCreation = utiCreation;
 	}
-	public TypeBien() {
+	public TypeBienDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
