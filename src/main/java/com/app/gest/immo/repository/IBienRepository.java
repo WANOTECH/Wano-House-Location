@@ -10,8 +10,8 @@ import com.app.gest.immo.enumeration.EEtatBien;
 
 public interface IBienRepository extends JpaRepository<Bien, Long>{
 	
-	Bien findBienByCode(String code);
-	Bien findBienByNom(String nom);
+	List<Bien> findBienByCode(String code);
+	List<Bien> findBienByNom(String nom);
 	List<Bien> findByEtatBien(EEtatBien etatBien);
 	List<Bien> findByCategorieBien(CategorieBien categorieBien);
 

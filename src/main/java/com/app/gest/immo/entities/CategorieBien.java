@@ -1,5 +1,6 @@
 package com.app.gest.immo.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CATEGORIE_BIEN")
-public class CategorieBien {
+public class CategorieBien implements Serializable {
 	
 	@Column(name ="TYEPE_ID")
 	@Id

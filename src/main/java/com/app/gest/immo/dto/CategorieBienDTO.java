@@ -1,9 +1,11 @@
 package com.app.gest.immo.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CategorieBienDTO {
+public class CategorieBienDTO implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private String nom;	private String description;
 	private Date dateCreation;

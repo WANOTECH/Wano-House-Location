@@ -13,6 +13,6 @@ public interface ITypeBien {
 	void delete (TypeBien typeBien) throws Exception;
 	void deleteById(Long id) throws Exception;
 	TypeBienDTO findByCode(String code) throws Exception;
-	TypeBien updateByCode(String code) throws Exception;
+	TypeBien updateByCode(String code, TypeBienDTO typeBienDTO) throws Exception;
 
 }

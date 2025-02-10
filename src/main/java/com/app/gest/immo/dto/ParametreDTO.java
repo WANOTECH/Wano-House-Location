@@ -1,6 +1,8 @@
 package com.app.gest.immo.dto;
 
-public class ParametreDTO {
+import java.io.Serializable;
+
+public class ParametreDTO implements Serializable{
 
 	private String code;
 	private String libelle;

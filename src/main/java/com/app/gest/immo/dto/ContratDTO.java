@@ -1,5 +1,6 @@
 package com.app.gest.immo.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,9 +8,8 @@ import java.util.Set;
 import com.app.gest.immo.enumeration.EPeriodicite;
 import com.app.gest.immo.enumeration.EStatutContrat;
 
-public class ContratDTO {
+public class ContratDTO implements Serializable{
 	
-
 	private String code;
 	private String libelle;
 	private Date dateMiseEnplace;
@@ -23,6 +23,7 @@ public class ContratDTO {
 	private Set<BienDTO> listBiensDTP = new HashSet<BienDTO>();
 	private String proprietaire;
 	private String gestionnaire;
+	private boolean isPeriodique;
 	
 	public String getCode() {
 		return code;
@@ -103,6 +104,13 @@ public class ContratDTO {
 	}
 	public void setListBiensDTP(Set<BienDTO> listBiensDTP) {
 		this.listBiensDTP = listBiensDTP;
+	}
+	
+	public boolean isPeriodique() {
+		return isPeriodique;
+	}
+	public void setPeriodique(boolean isPeriodique) {
+		this.isPeriodique = isPeriodique;
 	}
 	public ContratDTO() {
 		super();

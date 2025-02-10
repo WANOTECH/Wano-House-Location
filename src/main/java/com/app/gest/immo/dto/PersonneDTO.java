@@ -5,19 +5,9 @@ import java.sql.Date;
 
 import com.app.gest.immo.enumeration.ESexe;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name  = "PERSONNNE")
 public class PersonneDTO implements Serializable {
     
-	private static final long serialVersionUID = 1L;
-	@Id
-    private long id;
-    @Column(name = "code", unique = true)
+	private long id;
     private String code;
     private String nom;
     private String prenom;

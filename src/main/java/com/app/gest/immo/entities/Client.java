@@ -5,9 +5,6 @@ import java.io.Serializable;
 import com.app.gest.immo.enumeration.ETypeClient;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Table;
 
 @Entity
 //@Table(name = "CLIENT")
@@ -18,6 +15,7 @@ public class Client extends Personne implements Serializable{
 	private String piecesRecto;
 	private String pieceVerso;
 	private ETypeClient typeClient;
+	private String refFiscale;
 	public String getPiecesRecto() {
 		return piecesRecto;
 	}
@@ -46,8 +44,11 @@ public class Client extends Personne implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+	public String getRefFiscale() {
+		return refFiscale;
+	}
+	public void setRefFiscale(String refFiscale) {
+		this.refFiscale = refFiscale;
+	}
 
 }

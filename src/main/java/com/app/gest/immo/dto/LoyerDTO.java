@@ -1,13 +1,13 @@
 package com.app.gest.immo.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.app.gest.immo.enumeration.EEtatLoyer;
 
-public class LoyerDTO {
-	
+public class LoyerDTO implements Serializable{
 	
 	private String code;
 	private String description;
@@ -19,6 +19,7 @@ public class LoyerDTO {
 	private String utiCreation;
 	private Date dateCreation;
 	private Date dateModif;
+	private int indice;
 	
 	public String getCode() {
 		return code;
@@ -80,8 +81,14 @@ public class LoyerDTO {
 	public void setDateModif(Date dateModif) {
 		this.dateModif = dateModif;
 	}
+	public int getIndice() {
+		return indice;
+	}
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
 	public LoyerDTO(String code, String description, Date datePerception, Double montant, Set<BienDTO> listBiens,
-			ContratDTO contrat, EEtatLoyer etatLoyer, String utiCreation, Date dateCreation, Date dateModif) {
+			ContratDTO contrat, EEtatLoyer etatLoyer, String utiCreation, Date dateCreation, Date dateModif, int indice) {
 		super();
 		this.code = code;
 		this.description = description;
@@ -93,6 +100,7 @@ public class LoyerDTO {
 		this.utiCreation = utiCreation;
 		this.dateCreation = dateCreation;
 		this.dateModif = dateModif;
+		this.indice = indice;
 	}
 	public LoyerDTO() {
 		super();

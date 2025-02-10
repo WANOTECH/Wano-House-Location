@@ -1,5 +1,6 @@
 package com.app.gest.immo.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Loyer")
-public class Loyer {
+public class Loyer implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -35,6 +36,7 @@ public class Loyer {
 	private String utiCreation;
 	private Date dateCreation;
 	private Date dateModif;
+	private int indice;
 	public Long getId() {
 		return id;
 	}
@@ -101,8 +103,14 @@ public class Loyer {
 	public void setDateModif(Date dateModif) {
 		this.dateModif = dateModif;
 	}
+	public int getIndice() {
+		return indice;
+	}
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
 	public Loyer(String code, String description, Date datePerception, Double montant, Set<Bien> listBiens,
-			Contrat contrat, EEtatLoyer etatLoyer, String utiCreation, Date dateCreation, Date dateModif) {
+			Contrat contrat, EEtatLoyer etatLoyer, String utiCreation, Date dateCreation, Date dateModif, int indice) {
 		super();
 		this.code = code;
 		this.description = description;
@@ -114,12 +122,11 @@ public class Loyer {
 		this.utiCreation = utiCreation;
 		this.dateCreation = dateCreation;
 		this.dateModif = dateModif;
+		this.indice = indice;
 	}
 	public Loyer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
 }

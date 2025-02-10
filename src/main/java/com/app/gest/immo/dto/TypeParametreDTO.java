@@ -1,11 +1,12 @@
 package com.app.gest.immo.dto;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 import com.app.gest.immo.enumeration.ETypeParam;
 
 
-public class TypeParametreDTO {
+public class TypeParametreDTO implements Serializable {
 
 	private String code;
 	private String libelle;
@@ -13,7 +14,8 @@ public class TypeParametreDTO {
 	private ETypeParam typeParam;
 	private String utiCreation;
 	private String utiModification;
-	private Date dateCreation;
+	private LocalDate dateCreation;
+	
 	public String getCode() {
 		return code;
 	}
@@ -50,14 +52,14 @@ public class TypeParametreDTO {
 	public void setUtiModification(String utiModification) {
 		this.utiModification = utiModification;
 	}
-	public Date getDateCreation() {
+	public LocalDate getDateCreation() {
 		return dateCreation;
 	}
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDate dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 	public TypeParametreDTO(String code, String libelle, String description, ETypeParam typeParam, String utiCreation,
-			String utiModification, Date dateCreation) {
+			String utiModification, LocalDate dateCreation) {
 		super();
 		this.code = code;
 		this.libelle = libelle;
@@ -71,6 +73,11 @@ public class TypeParametreDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+	@Override
+	public String toString() {
+		return "TypeParametreDTO [code=" + code + ", libelle=" + libelle + ", description=" + description
+				+ ", typeParam=" + typeParam + ", utiCreation=" + utiCreation + ", utiModification=" + utiModification
+				+ ", dateCreation=" + dateCreation + "]";
+	}
 
 }

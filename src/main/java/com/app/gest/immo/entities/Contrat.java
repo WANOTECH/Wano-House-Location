@@ -35,6 +35,7 @@ public class Contrat implements Serializable{
 	private Double tva;
 	private Double montant;
 	private EStatutContrat statut;
+	private boolean isPeriodique;
 	@OneToMany
 	private Set<Client> listClients = new HashSet<>();
 	@OneToMany
@@ -148,6 +149,12 @@ public class Contrat implements Serializable{
 		this.listBiens = listBiens;
 		this.proprietaire = proprietaire;
 		this.gestionnaire = gestionnaire;
+	}
+	public boolean isPeriodique() {
+		return isPeriodique;
+	}
+	public void setPeriodique(boolean isPeriodique) {
+		this.isPeriodique = isPeriodique;
 	}
 	
 	

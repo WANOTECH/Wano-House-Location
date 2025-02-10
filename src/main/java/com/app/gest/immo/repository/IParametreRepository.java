@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IParametreRepository extends JpaRepository<Parametre, Long>{
 	
-	Parametre findParametreByCode(String code);
+	List<Parametre> findParametreByCode(String code);
 	List<Parametre> findByTypeParam(TypeParametre typeParam);
 
 }

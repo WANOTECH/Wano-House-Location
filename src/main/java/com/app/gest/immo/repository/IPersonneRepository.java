@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IPersonneRepository extends JpaRepository<Personne, Long>{
 	
-	Personne findPersonneByCode(String code);
+	List<Personne> findPersonneByCode(String code);
 	List<Personne> findByNom(String nom);
 
 }

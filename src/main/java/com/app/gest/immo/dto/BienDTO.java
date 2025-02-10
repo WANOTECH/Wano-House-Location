@@ -1,9 +1,12 @@
 package com.app.gest.immo.dto;
 
+import java.io.Serializable;
+
 import com.app.gest.immo.enumeration.EEtatBien;
 
-public class BienDTO {
+public class BienDTO implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private String nom;
 	private String location;
@@ -18,6 +21,7 @@ public class BienDTO {
 	private String proprietaire;
 	private String gestionnaire;
 	private EEtatBien etatBien;
+	private String categorie;
 
 	public String getCode() {
 		return code;
@@ -107,7 +111,6 @@ public class BienDTO {
 	}
 	public BienDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
@@ -132,8 +135,11 @@ public class BienDTO {
 		this.gestionnaire = gestionnaire;
 		this.etatBien = etatBien;
 	}
-	
-	
-	
+	public String getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
 
 }
