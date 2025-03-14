@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 
 @Entity
-//@Table(name = "GESTIONNAIRE")
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "GESTIONNAIRE")
+public class Gestionnaire extends Personne implements Serializable {
 
-public class Gestionnaire extends Personne implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
 	private Date dateNomination;
 
@@ -31,6 +32,5 @@ public class Gestionnaire extends Personne implements Serializable{
 		super();
 		this.dateNomination = dateNomination;
 	}
-	
-	
+
 }

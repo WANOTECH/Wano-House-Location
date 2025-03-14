@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name ="Utilisateur")
+@Table(name = "Utilisateur")
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
-	@Id
+    @Id
     private long id;
     private String nom;
     private String login;
@@ -23,19 +23,15 @@ public class Utilisateur implements Serializable {
     private String numero;
     private Status status;
     protected boolean isFirstConnexion;
-    @Column(name="DATE_CREATION")
+    @Column(name = "DATE_CREATION")
     private LocalDate dateCreation;
-    @Column(name="DATE_MODIIF")
+    @Column(name = "DATE_MODIIF")
     private LocalDate dateModif;
-    @Column(name="USER_CREATION")
+    @Column(name = "USER_CREATION")
     private String utiCreation;
-    
+
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "utilisateur_roles",
-        joinColumns = @JoinColumn(name = "utilisateur_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @JoinTable(name = "utilisateur_roles", joinColumns = @JoinColumn(name = "utilisateur_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Roles> roles = new HashSet<>();
     @ManyToOne
     private Groupes groupes;
@@ -121,12 +117,12 @@ public class Utilisateur implements Serializable {
     }
 
     public Set<Roles> getRoles() {
-		return roles;
-	}
+        return roles;
+    }
 
-	public void setRoles(Set<Roles> roles) {
-		this.roles = roles;
-	}
+    public void setRoles(Set<Roles> roles) {
+        this.roles = roles;
+    }
 
     public String getEmail() {
         return email;
@@ -141,26 +137,35 @@ public class Utilisateur implements Serializable {
     }
 
     public Status getStatus() {
-		return status;
-	}
+        return status;
+    }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
 
-	public boolean isFirstConnexion() {
-		return isFirstConnexion;
-	}
+    public boolean isFirstConnexion() {
+        return isFirstConnexion;
+    }
 
-	public void setFirstConnexion(boolean isFirstConnexion) {
-		this.isFirstConnexion = isFirstConnexion;
-	}
+    public void setFirstConnexion(boolean isFirstConnexion) {
+        this.isFirstConnexion = isFirstConnexion;
+    }
 
-	public Utilisateur(long id, String nom, String login, String passWord, String iP, int maxSession, LocalDate dateCreation, LocalDate dateModif, String utiCreation) {
+    @Override
+    public String toString() {
+        return "Utilisateur [id=" + id + ", nom=" + nom + ", login=" + login + ", passWord=" + passWord + ", iP=" + iP
+                + ", maxSession=" + maxSession + ", email=" + email + ", numero=" + numero + ", status=" + status
+                + ", isFirstConnexion=" + isFirstConnexion + ", dateCreation=" + dateCreation + ", dateModif="
+                + dateModif + ", utiCreation=" + utiCreation + ", roles=" + roles + ", groupes=" + groupes + "]";
+    }
+
+    public Utilisateur(long id, String nom, String login, String passWord, String iP, int maxSession,
+            LocalDate dateCreation, LocalDate dateModif, String utiCreation) {
         this.id = id;
         this.nom = nom;
         this.login = login;
@@ -173,5 +178,9 @@ public class Utilisateur implements Serializable {
     }
 
     public Utilisateur() {
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 }

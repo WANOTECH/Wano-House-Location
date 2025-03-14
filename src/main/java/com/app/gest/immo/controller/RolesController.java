@@ -54,7 +54,7 @@ public class RolesController {
 
     // Endpoint pour trouver des rôles par nom
     @GetMapping("/nom/{nom}")
-    public List<Roles> getRolesByNom(@PathVariable String nom) throws Exception {
+    public Roles getRolesByNom(@PathVariable String nom) throws Exception {
         return rolesService.findByNom(nom);
     }
 }

@@ -20,7 +20,6 @@ public interface IContrat {
 	Contrat updateByCode(String code, ContratDTO contratDTO) throws Exception;
  	List<ContratDTO> listContratByBien(Bien categorie)throws Exception;
 	List<ContratDTO> findByDateMiseEnLoyer(Date dateMiseEnloyer)throws Exception;
-	List<ContratDTO> findByContrat(Contrat contrat)throws Exception;
 	Set<Loyer> generateLoyer(Contrat contrat)throws Exception;
 
 }

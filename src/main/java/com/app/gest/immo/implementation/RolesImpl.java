@@ -11,8 +11,8 @@ import com.app.gest.immo.repository.IRolesRepository;
 import com.app.gest.immo.service.IRoles;
 
 @Service
-public class RolesImpl implements IRoles{
-	
+public class RolesImpl implements IRoles {
+
 	@Autowired
 	private IRolesRepository iRolesRepository;
 
@@ -37,23 +37,26 @@ public class RolesImpl implements IRoles{
 	@Override
 	public void delete(Roles roles) throws Exception {
 		iRolesRepository.delete(roles);
-		
+
 	}
 
 	@Override
 	public void deleteById(Long id) throws Exception {
 		Optional<Roles> roles = iRolesRepository.findById(id);
-		if (roles==null || roles.isEmpty()) {
-			
+		if (roles == null || roles.isEmpty()) {
+
 		}
 		Roles role = roles.get();
-		iRolesRepository.delete(role);		
-		
+		iRolesRepository.delete(role);
+
 	}
 
 	@Override
-	public List<Roles> findByNom(String nom) throws Exception {
-		List<Roles> listRoles = iRolesRepository.findByNom(nom);
-		return listRoles;
+	public Roles findByNom(String nom) throws Exception {
+		Optional<Roles> listRoles = iRolesRepository.findByNom(nom);
+		if (listRoles == null || listRoles.isEmpty()) {
+			throw new Exception("Role not found");
+		}
+		return listRoles.get();
 	}
 }

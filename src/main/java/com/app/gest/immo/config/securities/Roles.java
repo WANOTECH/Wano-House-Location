@@ -2,54 +2,35 @@ package com.app.gest.immo.config.securities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "Roles")
-public class Roles implements Serializable {
+public class Roles {
+    public Roles() {
+    }
 
-    private static final long serialVersionUID = 1L;
-	@Id
-    private long id;
+    public Roles(Long id, String nom, String description, String fonction) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.fonction = fonction;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "IDENTIFIANT")
+    private Long id;
+    @Column(name = "NOM", unique = true, updatable = false)
     private String nom;
-    private String path;
+    @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name="DATE_CREATION")
-    private LocalDate dateCreation;
-    @Column(name="DATE_MODIIF")
-    private LocalDate dateModif;
-    @Column(name="USER_CREATION")
-    private String utiCreation;
-    @ManyToMany
-    private  Set<Groupes> listGroupes;
-    
-    @ManyToMany(mappedBy = "roles")
-    private Set<Utilisateur> listUtilisateurSet = new HashSet<>();
+    @Column(name = "FONCTION")
+    private String fonction;
 
-    public Set<Groupes> getListGroupes() {
-        return listGroupes;
-    }
-
-    public void setListGroupes(Set<Groupes> listGroupes) {
-        this.listGroupes = listGroupes;
-    }
-
-    public Set<Utilisateur> getListUtilisateurSet() {
-        return listUtilisateurSet;
-    }
-
-    public void setListUtilisateurSet(Set<Utilisateur> listUtilisateurSet) {
-        this.listUtilisateurSet = listUtilisateurSet;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,14 +42,6 @@ public class Roles implements Serializable {
         this.nom = nom;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -77,40 +50,21 @@ public class Roles implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getDateCreation() {
-        return dateCreation;
+    public String getFonction() {
+        return fonction;
     }
 
-    public void setDateCreation(LocalDate dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setFonction(String fonction) {
+        this.fonction = fonction;
     }
 
-    public LocalDate getDateModif() {
-        return dateModif;
-    }
-
-    public void setDateModif(LocalDate dateModif) {
-        this.dateModif = dateModif;
-    }
-
-    public String getUtiCreation() {
-        return utiCreation;
-    }
-
-    public void setUtiCreation(String utiCreation) {
-        this.utiCreation = utiCreation;
-    }
-
-    public Roles(long id, String nom, String path, String description, LocalDate dateCreation, LocalDate dateModif, String utiCreation) {
-        this.id = id;
-        this.nom = nom;
-        this.path = path;
-        this.description = description;
-        this.dateCreation = dateCreation;
-        this.dateModif = dateModif;
-        this.utiCreation = utiCreation;
-    }
-
-    public Roles() {
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", description='" + description + '\'' +
+                ", fonction='" + fonction + '\'' +
+                '}';
     }
 }

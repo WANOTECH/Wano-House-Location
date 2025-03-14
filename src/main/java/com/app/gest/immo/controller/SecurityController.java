@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @RestController
 @RequestMapping("api/auth")
+@CrossOrigin
 public class SecurityController {
     private final AuthService service;
     private final IUtilisateur iUtilisateur;
 
-    public SecurityController(AuthService service, IUtilisateur iUtilisateur ){
+    public SecurityController(AuthService service, IUtilisateur iUtilisateur) {
         this.service = service;
         this.iUtilisateur = iUtilisateur;
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws Exception {
-        HttpHeaders  httpHeaders = new HttpHeaders();
+        HttpHeaders httpHeaders = new HttpHeaders();
         Map<String, Object> data = new HashMap<>();
-        String accessToken = "Bearer "+service.login(loginRequest);
+        String accessToken = "Bearer " + service.login(loginRequest);
         data.put("accessToken", accessToken);
         Utilisateur utilisateur = service.getUtilisateurByLogin(loginRequest.getLogin().trim());
         utilisateur.getRoles().clear();
         data.put("user", utilisateur);
-        String refreshToken = "Bearer "+service.refreshToken(utilisateur.getId());
+        String refreshToken = "Bearer " + service.refreshToken(utilisateur.getId());
         data.put("refreshToken", refreshToken);
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }

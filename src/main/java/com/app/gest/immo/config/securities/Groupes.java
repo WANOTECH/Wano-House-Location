@@ -2,49 +2,79 @@ package com.app.gest.immo.config.securities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Groupes")
-public class Groupes implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-	@Id
-    private long id;
-    private String nom;
-    private String description;
-    @Column(name="DATE_CREATION")
-    private LocalDate dateCreation;
-    @Column(name="DATE_MODIIF")
-    private LocalDate dateModif;
-    @Column(name="USER_CREATION")
-    private String utiCreation;
-
-    @ManyToMany
-    @JoinTable(
-        name = "groupe_roles",
-        joinColumns = @JoinColumn(name = "groupe_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Utilisateur> utilisateurs = new HashSet<>();
-
-    public long getId() {
-        return id;
+public class Groupes {
+    public Groupes() {
     }
 
-    public void setId(long id) {
+    public Groupes(Long id) {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public Groupes(Long id, Set<Roles> roles, String name, String libelle, String description,
+            Set<Utilisateur> utilisateurs) {
+        this.id = id;
+        this.roles = roles;
+        this.name = name;
+        this.libelle = libelle;
+        this.description = description;
+        this.utilisateurs = utilisateurs;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "IDENTIFIANT")
+    private Long id;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Roles> roles = new HashSet<>();
+
+    @Column(name = "NOM", unique = true)
+    private String name;
+
+    @Column(name = "LIBELLE")
+    private String libelle;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @OneToMany
+    @JoinColumn(name = "UTILISATEURS", referencedColumnName = "IDENTIFIANT")
+    private Set<Utilisateur> utilisateurs = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Roles> roles) {
+        this.roles = roles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public String getDescription() {
@@ -55,30 +85,6 @@ public class Groupes implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(LocalDate dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public LocalDate getDateModif() {
-        return dateModif;
-    }
-
-    public void setDateModif(LocalDate dateModif) {
-        this.dateModif = dateModif;
-    }
-
-    public String getUtiCreation() {
-        return utiCreation;
-    }
-
-    public void setUtiCreation(String utiCreation) {
-        this.utiCreation = utiCreation;
-    }
-
     public Set<Utilisateur> getUtilisateurs() {
         return utilisateurs;
     }
@@ -87,16 +93,15 @@ public class Groupes implements Serializable {
         this.utilisateurs = utilisateurs;
     }
 
-    public Groupes(long id, String nom, String description, LocalDate dateCreation, LocalDate dateModif, String utiCreation, Set<Utilisateur> utilisateurs) {
-        this.id = id;
-        this.nom = nom;
-        this.description = description;
-        this.dateCreation = dateCreation;
-        this.dateModif = dateModif;
-        this.utiCreation = utiCreation;
-        this.utilisateurs = utilisateurs;
-    }
-
-    public Groupes() {
+    @Override
+    public String toString() {
+        return "Groupes{" +
+                "id=" + id +
+                ", roles=" + roles +
+                ", name='" + name + '\'' +
+                ", libelle='" + libelle + '\'' +
+                ", description='" + description + '\'' +
+                ", utilisateurs=" + utilisateurs +
+                '}';
     }
 }

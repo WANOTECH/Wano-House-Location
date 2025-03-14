@@ -16,6 +16,7 @@ import com.app.gest.immo.entities.Parametre;
 import com.app.gest.immo.entities.Personne;
 import com.app.gest.immo.entities.Quartier;
 import com.app.gest.immo.entities.Region;
+import com.app.gest.immo.entities.UtilsAPP;
 import com.app.gest.immo.entities.Ville;
 import com.app.gest.immo.enumeration.EEtatBien;
 import com.app.gest.immo.repository.IBienRepository;
@@ -25,20 +26,20 @@ import com.app.gest.immo.repository.IPersonneRepository;
 import com.app.gest.immo.service.IBien;
 
 @Service
-public class BienImpl implements IBien{
-	
+public class BienImpl implements IBien {
+
 	private final IBienRepository iBien;
 	private final IParametreRepository iParam;
 	private final IPersonneRepository personneRepos;
 	private final ICategorieRepository iCategorieRepository;
-	
+
 	public BienImpl(IBienRepository iBien, IParametreRepository iParam,
 			IPersonneRepository personneRepos, ICategorieRepository iCategorieRepository) {
-        this.iBien = iBien;
+		this.iBien = iBien;
 		this.iParam = iParam;
 		this.personneRepos = personneRepos;
 		this.iCategorieRepository = iCategorieRepository;
-    }
+	}
 
 	@Override
 	public Bien save(BienDTO bienDTO) throws Exception {
@@ -49,7 +50,7 @@ public class BienImpl implements IBien{
 	@Override
 	public Bien update(Long id, BienDTO bienDTO) throws Exception {
 		Optional<Bien> bien = iBien.findById(id);
-		if(bien.get()==null) {
+		if (bien.get() == null) {
 			throw new Exception("Pas de  Bien correspondant à cet id" + " -" + id);
 		}
 		Bien bie = bien.get();
@@ -64,8 +65,8 @@ public class BienImpl implements IBien{
 		if (list == null || list.isEmpty()) {
 			throw new Exception("Aucun Element Trouve");
 		}
-		for (Bien  bien: list){
-			set.add(setBienDTO(bien));		
+		for (Bien bien : list) {
+			set.add(setBienDTO(bien));
 		}
 		return set;
 	}
@@ -73,48 +74,46 @@ public class BienImpl implements IBien{
 	@Override
 	public void delete(Bien Bien) throws Exception {
 		iBien.delete(Bien);
-		
+
 	}
 
 	@Override
 	public void deleteById(Long id) throws Exception {
 		Optional<Bien> Bien = iBien.findById(id);
-		if(Bien.get()==null) {
+		if (Bien.get() == null) {
 			throw new Exception("Pas de  Bien correspondant à cet id" + " -" + id);
 		}
-		Bien  bien= Bien.get();
+		Bien bien = Bien.get();
 		iBien.delete(bien);
-		
+
 	}
 
 	@Override
 	public BienDTO findByCode(String code) throws Exception {
-		Bien  bien= iBien.findBienByCode(code).get(0);
+		Bien bien = iBien.findBienByCode(code).get(0);
 		return setBienDTO(bien);
 	}
 
 	@Override
 	public Bien updateByCode(String code, BienDTO bienDTO) throws Exception {
-		List<Bien> listBiens= iBien.findBienByCode(code);
-		if(listBiens==null || listBiens.isEmpty()){
+		List<Bien> listBiens = iBien.findBienByCode(code);
+		if (listBiens == null || listBiens.isEmpty()) {
 			throw new Exception("");
 		}
 		Bien bien = listBiens.get(0);
 		return iBien.saveAndFlush(bien);
 	}
-	
-	
 
 	@Override
 	public List<BienDTO> listBienByEtat(EEtatBien etat) throws Exception {
-		
+
 		List<Bien> list = iBien.findByEtatBien(etat);
 		List<BienDTO> lsitDTO = new ArrayList<BienDTO>();
 		if (list == null || list.isEmpty()) {
 			throw new Exception("Aucun Element Trouve");
 		}
-		for (Bien  bien: list){
-			lsitDTO.add(setBienDTO(bien));		
+		for (Bien bien : list) {
+			lsitDTO.add(setBienDTO(bien));
 		}
 		return lsitDTO;
 	}
@@ -126,22 +125,22 @@ public class BienImpl implements IBien{
 		if (list == null || list.isEmpty()) {
 			throw new Exception("Aucun Element Trouve");
 		}
-		for (Bien  bien: list){
-			lsitDTO.add(setBienDTO(bien));		
+		for (Bien bien : list) {
+			lsitDTO.add(setBienDTO(bien));
 		}
 		return lsitDTO;
 	}
-	
+
 	private Bien setBien(BienDTO BienDTO) throws Exception {
 		Bien Bien = toEntity(BienDTO);
 		return Bien;
 	}
-	
+
 	private BienDTO setBienDTO(Bien Bien) {
 		BienDTO bienDTO = toDTO(Bien);
 		return bienDTO;
 	}
-	
+
 	private BienDTO toDTO(Bien bien) {
 		BienDTO bienDTO = new BienDTO();
 		bienDTO.setAdresse(bien.getLocation());
@@ -158,7 +157,7 @@ public class BienImpl implements IBien{
 		bienDTO.setNombrePieces(bien.getNombrePieces());
 		return bienDTO;
 	}
-	
+
 	@Override
 	public Bien toEntity(BienDTO bienDTO) throws Exception {
 		Bien bien = new Bien();
@@ -168,31 +167,31 @@ public class BienImpl implements IBien{
 		Personne proprietaire = personneRepos.findPersonneByCode(bienDTO.getProprietaire()).get(0);
 		Personne gestionnaire = personneRepos.findPersonneByCode(bienDTO.getGestionnaire()).get(0);
 		List<CategorieBien> listCategorie = iCategorieRepository.findCategorieBienByCode(bienDTO.getCategorie());
-		
-		if(listCategorie==null || listCategorie.isEmpty()) {
+
+		if (listCategorie == null || listCategorie.isEmpty()) {
 			throw new Exception();
 		}
 		CategorieBien categorie = listCategorie.get(0);
 
-		if (ville!=null) {
+		if (ville != null) {
 			bien.setAdresse((Ville) ville);
 		}
-		
-		if (proprietaire!=null) {
+
+		if (proprietaire != null) {
 			bien.setProprietaire(proprietaire);
 		}
-		
-		if (gestionnaire!=null) {
+
+		if (gestionnaire != null) {
 			bien.setGestionnaire((Gestionnaire) gestionnaire);
 		}
-		
-		if (region!=null) {
+
+		if (region != null) {
 			bien.setRegion((Region) region);
 		}
-		if (quartier!=null) {
+		if (quartier != null) {
 			bien.setQuartier((Quartier) quartier);
 		}
-		bien.setCode(bienDTO.getCode());
+		bien.setCode(UtilsAPP.genCode());
 		bien.setEtatBien(bienDTO.getEtatBien());
 		bien.setLongitude(bienDTO.getLongitude());
 		bien.setLatittude(bienDTO.getLatittude());
@@ -206,12 +205,12 @@ public class BienImpl implements IBien{
 
 	@Override
 	public BienDTO miseLOyer(String code, BienDTO bienDTO) throws Exception {
-		List<Bien> listBien= iBien.findBienByCode(code);
-		if(listBien==null || listBien.isEmpty()){
+		List<Bien> listBien = iBien.findBienByCode(code);
+		if (listBien == null || listBien.isEmpty()) {
 			return null;
 		}
 		Bien bien = listBien.get(0);
-		if(bien.getEtatBien().equals(EEtatBien.Occupe) || bien.getEtatBien().equals(EEtatBien.EnReparation)){
+		if (bien.getEtatBien().equals(EEtatBien.Occupe) || bien.getEtatBien().equals(EEtatBien.EnReparation)) {
 			throw new Exception("");
 		}
 		bien.setEtatBien(EEtatBien.Occupe);

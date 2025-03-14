@@ -18,7 +18,6 @@ public class GroupesImpl implements IGoupes {
 
     @Override
     public Groupes save(Groupes groupes) throws Exception {
-        // Sauvegarde le groupe dans la base de données
         return iGroupesRepository.save(groupes);
     }
 
@@ -57,9 +56,13 @@ public class GroupesImpl implements IGoupes {
         return iGroupesRepository.findGroupeByNom(nom);
     }
 
-	@Override
-	public Groupes finById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Groupes finById(Long id) {
+        Optional<Groupes> grpes = iGroupesRepository.findById(id);
+        if (grpes == null || grpes.isEmpty()) {
+            return null;
+        }
+        Groupes groupes = grpes.get();
+        return groupes;
+    }
 }
